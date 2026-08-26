@@ -40,15 +40,23 @@ export function WorksRow({
 
   return (
     <div className="flex flex-col items-end gap-2">
-      <div className="flex max-w-full items-start justify-end gap-3 overflow-x-auto">
-        {visibleWorks.map((work, index) => (
-          <WorkCard
-            key={work._id}
-            work={work}
-            fadeOut={isRemoving && index === visibleWorks.length - 1}
-            onSelect={onSelect ? () => onSelect(work._id) : undefined}
+      <div className="relative">
+        <div className="flex max-w-full items-start justify-end gap-3 overflow-x-auto">
+          {visibleWorks.map((work, index) => (
+            <WorkCard
+              key={work._id}
+              work={work}
+              fadeOut={isRemoving && index === visibleWorks.length - 1}
+              onSelect={onSelect ? () => onSelect(work._id) : undefined}
+            />
+          ))}
+        </div>
+        {revealedCount >= 3 && (
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -inset-12 z-10 backdrop-blur-md [-webkit-mask-image:linear-gradient(to_right,black_0%,black_40%,transparent_60%)] [mask-image:linear-gradient(to_right,black_0%,black_40%,transparent_60%)]"
           />
-        ))}
+        )}
       </div>
       {works.length > 0 && (
         <div className="flex h-5 items-center justify-end gap-2.5">

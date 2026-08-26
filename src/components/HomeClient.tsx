@@ -21,7 +21,7 @@ export function HomeClient({
     <>
       <main className="flex min-h-screen items-center justify-center bg-[color:var(--background)] p-[var(--grid-margin)]">
         <div className="relative flex w-full max-w-[1380px] flex-1 items-center justify-end">
-          <div className="absolute top-1/2 left-0 z-10 flex w-[452px] -translate-y-1/2 flex-col items-start">
+          <div className="fixed top-[var(--grid-margin)] left-[var(--grid-margin)] right-[var(--grid-margin)] z-10 flex flex-col items-start lg:absolute lg:top-1/2 lg:right-auto lg:left-0 lg:w-[452px] lg:-translate-y-1/2">
             <div className="flex flex-col items-start gap-4">
               <div className="flex flex-col items-start text-xs text-[color:var(--main-text)]">
                 <p>{profile?.name ?? "Add your name in Studio"}</p>
