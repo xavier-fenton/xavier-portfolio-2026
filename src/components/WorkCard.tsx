@@ -25,7 +25,7 @@ export function WorkCard({
           onSelect?.();
         }
       }}
-      className={`flex w-[calc(100vw-var(--grid-margin)*2)] shrink-0 cursor-pointer flex-col gap-2 rounded pt-[var(--grid-gutter)] pb-[var(--grid-margin)] px-2 transition-colors duration-300 ease-out hover:bg-[rgba(208,208,208,0.3)] lg:w-[451px] ${
+      className={`flex w-full min-w-0 cursor-pointer flex-col gap-2 rounded pt-[var(--grid-gutter)] pb-[var(--grid-margin)] px-2 transition-colors duration-300 ease-out hover:bg-[rgba(208,208,208,0.3)] ${
         fadeOut
           ? "[animation:fade-out_300ms_ease-out_forwards]"
           : "[animation:fade-in_300ms_ease-out]"
@@ -36,7 +36,7 @@ export function WorkCard({
           src={imageUrl}
           alt={work.client}
           fill
-          sizes="(max-width: 1023px) calc(100vw - 60px), 451px"
+          sizes="(max-width: 639px) calc(100vw - 60px), (max-width: 1380px) 45vw, 451px"
           className="object-cover"
         />
       </div>

@@ -22,6 +22,7 @@ export const worksQuery = defineQuery(`
     tagline,
     categories,
     location,
+    role,
     gallery[]{
       ...,
       "dimensions": asset->metadata.dimensions

@@ -14,6 +14,7 @@ export type Work = {
   tagline: string | null;
   categories: string[] | null;
   location: string | null;
+  role: string[] | null;
   gallery: GalleryImage[] | null;
 };
 

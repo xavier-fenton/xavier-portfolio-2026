@@ -69,6 +69,14 @@ export const work = defineType({
       type: "string",
     }),
     defineField({
+      name: "role",
+      title: "Role",
+      description: "e.g. Design, Development. Shown in the homepage list view.",
+      type: "array",
+      of: [{ type: "string" }],
+      options: { layout: "tags" },
+    }),
+    defineField({
       name: "gallery",
       title: "Gallery",
       description: "Full-width images shown on the work's detail page.",
