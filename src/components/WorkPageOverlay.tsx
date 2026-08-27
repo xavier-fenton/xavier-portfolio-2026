@@ -10,6 +10,7 @@ import { STATUS_LABEL, type Work } from "@/lib/types";
 const GALLERY_WIDTH = 1364;
 const FALLBACK_ASPECT_RATIO = 16 / 10;
 const FADE_OUT_MS = 300;
+const IMAGE_STAGGER_MS = 500;
 
 export function WorkPageOverlay({
   work,
@@ -91,7 +92,11 @@ export function WorkPageOverlay({
                 const imageUrl = urlForImage(image).width(GALLERY_WIDTH).url();
 
                 return (
-                  <div key={index} className="relative w-full overflow-clip rounded-[4px]">
+                  <div
+                    key={index}
+                    style={{ animationDelay: `${(index + 1) * IMAGE_STAGGER_MS}ms` }}
+                    className="relative w-full overflow-clip rounded-[4px] [animation:fade-in_300ms_ease-out_both]"
+                  >
                     <Image
                       src={imageUrl}
                       alt={work.client}
