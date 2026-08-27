@@ -57,9 +57,10 @@ export function WorkPageOverlay({
             aria-label="Close"
             onClick={handleClose}
             disabled={isClosing}
-            className="absolute top-0 right-0 size-5 cursor-pointer disabled:cursor-default"
+            className="absolute top-0 right-0 flex cursor-pointer items-center gap-2 text-xs text-[color:var(--main-text)] disabled:cursor-default"
           >
-            <MinusButtonIcon className="size-full" />
+            <span>Close</span>
+            <MinusButtonIcon className="size-5 shrink-0" />
           </button>
         </div>
 

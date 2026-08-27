@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 import { LiveClock } from "@/components/LiveClock";
 import { WorkPageOverlay } from "@/components/WorkPageOverlay";
@@ -14,8 +15,22 @@ export function HomeClient({
   profile: Profile | null;
   works: Work[];
 }) {
-  const [selectedWorkId, setSelectedWorkId] = useState<string | null>(null);
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const selectedWorkId = searchParams.get("work");
   const selectedWork = works.find((work) => work._id === selectedWorkId) ?? null;
+
+  const handleSelect = useCallback(
+    (workId: string) => {
+      router.push(`${pathname}?work=${workId}`, { scroll: false });
+    },
+    [router, pathname],
+  );
+
+  const handleClose = useCallback(() => {
+    router.push(pathname, { scroll: false });
+  }, [router, pathname]);
 
   return (
     <>
@@ -45,16 +60,13 @@ export function HomeClient({
           </div>
 
           <div className="relative w-full lg:col-span-8 lg:col-start-5 lg:h-full">
-            <WorksSection works={works} onSelect={setSelectedWorkId} />
+            <WorksSection works={works} onSelect={handleSelect} />
           </div>
         </div>
       </main>
 
       {selectedWork && (
-        <WorkPageOverlay
-          work={selectedWork}
-          onClose={() => setSelectedWorkId(null)}
-        />
+        <WorkPageOverlay work={selectedWork} onClose={handleClose} />
       )}
     </>
   );

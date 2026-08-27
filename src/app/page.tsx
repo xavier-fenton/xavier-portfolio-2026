@@ -1,3 +1,5 @@
+import { Suspense } from "react";
+
 import { HomeClient } from "@/components/HomeClient";
 import { client } from "@/sanity/lib/client";
 import { profileQuery, worksQuery } from "@/lib/queries";
@@ -11,5 +13,9 @@ export default async function Home() {
     client.fetch<Work[]>(worksQuery),
   ]);
 
-  return <HomeClient profile={profile} works={works} />;
+  return (
+    <Suspense>
+      <HomeClient profile={profile} works={works} />
+    </Suspense>
+  );
 }

@@ -9,11 +9,12 @@ export function WorksGridView({
   onSelect?: (workId: string) => void;
 }) {
   return (
-    <div className="grid w-full grid-cols-1 gap-x-3 sm:grid-cols-2">
-      {works.map((work) => (
+    <div className="grid w-full grid-cols-1 sm:grid-cols-2">
+      {works.map((work, index) => (
         <WorkCard
           key={work._id}
           work={work}
+          staggerIndex={index}
           onSelect={onSelect ? () => onSelect(work._id) : undefined}
         />
       ))}

@@ -6,10 +6,12 @@ import { STATUS_LABEL, type Work } from "@/lib/types";
 export function WorkCard({
   work,
   fadeOut = false,
+  staggerIndex = 0,
   onSelect,
 }: {
   work: Work;
   fadeOut?: boolean;
+  staggerIndex?: number;
   onSelect?: () => void;
 }) {
   const imageUrl = urlForImage(work.coverImage).width(902).height(562).url();
@@ -25,10 +27,11 @@ export function WorkCard({
           onSelect?.();
         }
       }}
+      style={fadeOut ? undefined : { animationDelay: `${(staggerIndex + 1) * 500}ms` }}
       className={`flex w-full min-w-0 cursor-pointer flex-col gap-2 rounded pt-[var(--grid-gutter)] pb-[var(--grid-margin)] px-2 transition-colors duration-300 ease-out hover:bg-[rgba(208,208,208,0.3)] ${
         fadeOut
           ? "[animation:fade-out_300ms_ease-out_forwards]"
-          : "[animation:fade-in_300ms_ease-out]"
+          : "[animation:fade-in_300ms_ease-out_both]"
       }`}
     >
       <div className="relative aspect-[451/281] w-full overflow-clip rounded">
