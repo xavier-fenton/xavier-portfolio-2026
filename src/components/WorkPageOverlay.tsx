@@ -66,7 +66,7 @@ export function WorkPageOverlay({
         </div>
 
         <div className="relative flex flex-col gap-2 rounded-[4px] bg-[rgba(255,255,255,0.01)] px-2 pt-2 pb-4 backdrop-blur-[11px]">
-          <div className="flex flex-col items-start gap-2 text-xs text-[color:var(--main-text)]">
+          <div className="flex flex-col items-start gap-2 pb-12 text-xs text-[color:var(--main-text)]">
             <p>{work.client}</p>
             {work.tagline && <p className="max-w-[400px]">{work.tagline}</p>}
             {work.categories && work.categories.length > 0 && (
