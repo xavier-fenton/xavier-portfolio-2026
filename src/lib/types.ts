@@ -1,8 +1,19 @@
 import type { SanityImageSource } from "@sanity/image-url";
 
 export type GalleryImage = SanityImageSource & {
+  _type: "image";
   dimensions?: { width: number; height: number };
+  mimeType?: string;
+  assetUrl?: string;
 };
+
+export type GalleryVideo = {
+  _type: "video";
+  mimeType?: string;
+  assetUrl?: string;
+};
+
+export type GalleryItem = GalleryImage | GalleryVideo;
 
 export type Work = {
   _id: string;
@@ -15,7 +26,7 @@ export type Work = {
   categories: string[] | null;
   location: string | null;
   role: string[] | null;
-  gallery: GalleryImage[] | null;
+  gallery: GalleryItem[] | null;
 };
 
 export type Profile = {

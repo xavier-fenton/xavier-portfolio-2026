@@ -24,8 +24,17 @@ export const worksQuery = defineQuery(`
     location,
     role,
     gallery[]{
-      ...,
-      "dimensions": asset->metadata.dimensions
+      _type,
+      _type == "image" => {
+        ...,
+        "dimensions": asset->metadata.dimensions,
+        "mimeType": asset->mimeType,
+        "assetUrl": asset->url
+      },
+      _type == "video" => {
+        "mimeType": asset->mimeType,
+        "assetUrl": asset->url
+      }
     }
   }
 `);
