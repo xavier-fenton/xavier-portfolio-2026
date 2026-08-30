@@ -3,11 +3,9 @@ import { STATUS_LABEL, type Work } from "@/lib/types";
 const COLUMNS = "grid-cols-[9fr_4fr_7fr_4fr_9fr]";
 const FADE_DURATION_MS = 300;
 const HEADER_START_MS = 300;
-const HEADER_CELL_STAGGER_MS = 500;
 const ROW_STAGGER_MS = 500;
 const HEADER_LABELS = ["Name", "Year", "Location", "Status", "Role"];
-const HEADER_END_MS =
-  HEADER_START_MS + (HEADER_LABELS.length - 1) * HEADER_CELL_STAGGER_MS + FADE_DURATION_MS;
+const HEADER_END_MS = HEADER_START_MS + FADE_DURATION_MS;
 
 function roleLabel(work: Work) {
   if (work.role && work.role.length > 0) return work.role.join(", ");
@@ -24,17 +22,12 @@ export function WorksListView({
 }) {
   return (
     <div className="flex w-full flex-col items-start gap-2 text-xs text-[color:var(--main-text)] lg:w-[701px]">
-      <div className={`grid w-full items-start gap-3 ${COLUMNS}`}>
-        {HEADER_LABELS.map((label, index) => (
-          <span
-            key={label}
-            style={{
-              animationDelay: `${HEADER_START_MS + index * HEADER_CELL_STAGGER_MS}ms`,
-            }}
-            className="[animation:fade-in_300ms_ease-out_both]"
-          >
-            {label}
-          </span>
+      <div
+        style={{ animationDelay: `${HEADER_START_MS}ms` }}
+        className={`grid w-full items-start gap-3 [animation:fade-in_300ms_ease-out_both] ${COLUMNS}`}
+      >
+        {HEADER_LABELS.map((label) => (
+          <span key={label}>{label}</span>
         ))}
       </div>
       <div className="flex w-full flex-col items-start">

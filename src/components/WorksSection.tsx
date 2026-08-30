@@ -25,7 +25,7 @@ export function WorksSection({
             type="button"
             aria-pressed={viewMode === "list"}
             onClick={() => setViewMode("list")}
-            className={`cursor-pointer ${viewMode === "list" ? "" : "opacity-40"}`}
+            className={`cursor-pointer rounded ${viewMode === "list" ? "bg-[rgba(208,208,208,0.3)]" : "opacity-40"}`}
           >
             List
           </button>
@@ -33,7 +33,7 @@ export function WorksSection({
             type="button"
             aria-pressed={viewMode === "grid"}
             onClick={() => setViewMode("grid")}
-            className={`cursor-pointer ${viewMode === "grid" ? "" : "opacity-40"}`}
+            className={`cursor-pointer rounded ${viewMode === "grid" ? "bg-[rgba(208,208,208,0.3)]" : "opacity-40"}`}
           >
             Grid
           </button>

@@ -95,7 +95,7 @@ export function WorkPageOverlay({
                   <div
                     key={index}
                     style={{ animationDelay: `${(index + 1) * IMAGE_STAGGER_MS}ms` }}
-                    className="relative w-full overflow-clip rounded-[4px] [animation:fade-in_300ms_ease-out_both]"
+                    className="relative w-full overflow-clip rounded-[4px] shadow-[0_1px_3px_rgba(0,0,0,0.08)] [animation:fade-in_300ms_ease-out_both]"
                   >
                     <Image
                       src={imageUrl}
