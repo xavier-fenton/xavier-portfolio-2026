@@ -83,25 +83,52 @@ export function WorkPageOverlay({
 
           {work.gallery && work.gallery.length > 0 && (
             <div className="flex w-full flex-col gap-2">
-              {work.gallery.map((image, index) => {
-                const width = image.dimensions?.width ?? GALLERY_WIDTH;
+              {work.gallery.map((item, index) => {
+                const containerClassName =
+                  "relative w-full overflow-clip rounded-[4px] shadow-[0_1px_3px_rgba(0,0,0,0.08)] [animation:fade-in_300ms_ease-out_both]";
+                const animationDelay = `${(index + 1) * IMAGE_STAGGER_MS}ms`;
+
+                if (item._type === "video") {
+                  return (
+                    <div
+                      key={index}
+                      style={{ animationDelay }}
+                      className={containerClassName}
+                    >
+                      <video
+                        src={item.assetUrl}
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        className="h-auto w-full object-contain"
+                      />
+                    </div>
+                  );
+                }
+
+                const width = item.dimensions?.width ?? GALLERY_WIDTH;
                 const height =
-                  image.dimensions?.height ??
+                  item.dimensions?.height ??
                   Math.round(GALLERY_WIDTH / FALLBACK_ASPECT_RATIO);
                 const scaledHeight = Math.round((height / width) * GALLERY_WIDTH);
-                const imageUrl = urlForImage(image).width(GALLERY_WIDTH).url();
+                const isGif = item.mimeType === "image/gif";
+                const imageUrl = isGif
+                  ? (item.assetUrl ?? urlForImage(item).url())
+                  : urlForImage(item).width(GALLERY_WIDTH).url();
 
                 return (
                   <div
                     key={index}
-                    style={{ animationDelay: `${(index + 1) * IMAGE_STAGGER_MS}ms` }}
-                    className="relative w-full overflow-clip rounded-[4px] shadow-[0_1px_3px_rgba(0,0,0,0.08)] [animation:fade-in_300ms_ease-out_both]"
+                    style={{ animationDelay }}
+                    className={containerClassName}
                   >
                     <Image
                       src={imageUrl}
                       alt={work.client}
-                      width={GALLERY_WIDTH}
-                      height={scaledHeight}
+                      width={isGif ? width : GALLERY_WIDTH}
+                      height={isGif ? height : scaledHeight}
+                      unoptimized={isGif}
                       sizes="(max-width: 1380px) 100vw, 1380px"
                       className="h-auto w-full object-contain"
                     />

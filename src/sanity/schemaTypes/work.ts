@@ -79,9 +79,18 @@ export const work = defineType({
     defineField({
       name: "gallery",
       title: "Gallery",
-      description: "Full-width images shown on the work's detail page.",
+      description:
+        "Full-width images, GIFs, or videos shown on the work's detail page. GIFs and videos loop automatically.",
       type: "array",
-      of: [{ type: "image", options: { hotspot: true } }],
+      of: [
+        { type: "image", options: { hotspot: true } },
+        {
+          type: "file",
+          name: "video",
+          title: "Video",
+          options: { accept: "video/*" },
+        },
+      ],
     }),
   ],
   orderings: [
